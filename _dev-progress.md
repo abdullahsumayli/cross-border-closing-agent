@@ -5,7 +5,7 @@
 
 Last updated: 2026-06-05
 Current sprint: v2 — Story 6
-Last command: /8-eo-retro Story-6
+Last command: /5-eo-score Story-8
 
 ## Retros
 
@@ -24,7 +24,7 @@ Last command: /8-eo-retro Story-6
 | 5 | لوحة تحكم إدارية كاملة | v2 | ✅ shipped | ✓ | 45/45 | 90 | 2026-06-05 | 855bb49 → GitHub main |
 | 6 | تكامل GoHighLevel (GHL) | v2 | ✅ shipped | ✓ | 26/26 | 90 | 2026-06-05 | 08137d5 → GitHub main |
 | 7 | Tap Payments (مسار خليجي ثانٍ) + PDPL | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
-| 8 | تحليلات وتقارير الوسيط | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
+| 8 | تحليلات وتقارير الوسيط | v2 | 🧪 scoring | ✓ | 25/25 | 92 | — | 7be6af8 — QA↑9 (L-001 N/A) |
 
 ## Status legend
 
