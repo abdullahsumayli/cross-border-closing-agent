@@ -31,11 +31,29 @@ export async function POST(req: NextRequest) {
   }
 
   // Return 200 immediately (Meta requires fast ACK — AC-2.1)
-  processWebhookAsync(rawBody).catch((err) =>
-    console.error('[WhatsApp webhook] Async processing error:', err)
+  // Scalability note: this is fire-and-forget. At Weekend MVP scale (<200 brokers,
+  // <20 concurrent inquiries) this is fine. At 200+ brokers, add a queue (BullMQ/Upstash)
+  // so failed messages retry up to 3× instead of being silently dropped. Revisit at customer #50.
+  withRetry(() => processWebhookAsync(rawBody), 3).catch((err) =>
+    console.error('[WhatsApp webhook] All retries failed:', err)
   )
 
   return NextResponse.json({ status: 'ok' }, { status: 200 })
+}
+
+// Simple retry with exponential backoff — covers transient DB/API failures
+async function withRetry<T>(fn: () => Promise<T>, maxAttempts: number): Promise<T> {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      return await fn()
+    } catch (err) {
+      if (attempt === maxAttempts) throw err
+      const delay = 200 * Math.pow(2, attempt - 1) // 200ms, 400ms, 800ms
+      await new Promise((r) => setTimeout(r, delay))
+      console.warn(`[WhatsApp webhook] Retry ${attempt}/${maxAttempts - 1}...`)
+    }
+  }
+  throw new Error('unreachable')
 }
 
 async function processWebhookAsync(rawBody: string) {
