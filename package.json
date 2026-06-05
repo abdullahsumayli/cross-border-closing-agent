@@ -10,7 +10,8 @@
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
     "db:migrate": "npx supabase db push --include-all",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.30.0",

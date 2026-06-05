@@ -1,21 +1,13 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/service'
 
+// AC-4.2: service client avoids cookie dependency — works outside request context
 export async function GET() {
   try {
-    const supabase = await createClient()
-    // Light DB check — just verify connection
-    const { error } = await supabase.from('brokers').select('count').limit(1)
-    const dbStatus = error ? 'error' : 'ok'
-
-    return NextResponse.json(
-      { status: 'ok', db: dbStatus },
-      { status: 200 }
-    )
+    const supabase = createServiceClient()
+    const { error } = await supabase.from('brokers').select('id').limit(1)
+    return NextResponse.json({ status: 'ok', db: error ? 'error' : 'ok' })
   } catch {
-    return NextResponse.json(
-      { status: 'ok', db: 'pending' },
-      { status: 200 }
-    )
+    return NextResponse.json({ status: 'ok', db: 'pending' })
   }
 }

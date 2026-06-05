@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import type Stripe from 'stripe'
-import { verifyStripeSignature, buildSubscriptionPayload, type PricingTier } from '@/lib/stripe'
+import { verifyStripeSignature, buildSubscriptionPayload, PRICING_TIERS, type PricingTier } from '@/lib/stripe'
 import { createServiceClient } from '@/lib/supabase/service'
 import { sendReceiptEmail } from '@/lib/email'
+import { capturePayment } from '@/lib/posthog'
 
 export async function POST(req: NextRequest) {
   const sig = req.headers.get('stripe-signature') ?? ''
@@ -62,6 +63,9 @@ export async function POST(req: NextRequest) {
       console.error('[stripe webhook] upsert failed — Stripe will retry:', upsertError.message)
       return NextResponse.json({ error: 'Database error' }, { status: 500 })
     }
+
+    // AC-4.6: track payment event (fire-and-forget)
+    void capturePayment(brokerId, tier, PRICING_TIERS[tier].priceSar)
   }
 
   if (event.type === 'payment_intent.succeeded') {

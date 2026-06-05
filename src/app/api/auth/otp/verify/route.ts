@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { otpSchema } from '@/lib/validations/auth'
+import { captureSignup } from '@/lib/posthog'
 import { z } from 'zod'
 
 export async function POST(req: NextRequest) {
@@ -40,6 +41,9 @@ export async function POST(req: NextRequest) {
       .from('otp_codes')
       .update({ used_at: new Date().toISOString() })
       .eq('id', record.id)
+
+    // AC-4.6: track signup (best-effort — phone as temp distinct_id)
+    void captureSignup(phone)
 
     return NextResponse.json({ verified: true })
   } catch (err) {
