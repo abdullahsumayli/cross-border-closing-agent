@@ -5,7 +5,7 @@
 
 Last updated: 2026-06-05
 Current sprint: Weekend MVP
-Last command: /7-eo-ship Story-2
+Last command: /2-eo-dev-plan Story-3
 
 ## Stories
 
@@ -13,7 +13,7 @@ Last command: /7-eo-ship Story-2
 |---|-------|-------|--------|-----|----------|------|------|---------|
 | 1 | تسجيل الوسيط | MVP | ✅ shipped | ✓ | 34/34 | 90 | 2026-06-05 | 37e5d71 → GitHub main |
 | 2 | استقبال وتأهيل الاستفسار الأجنبي | MVP | ✅ shipped | ✓ | 36/36 | 90 | 2026-06-05 | 74e334b → GitHub main |
-| 3 | التسعير والاشتراك | MVP | ⬜ not started | — | — | — | — | — |
+| 3 | التسعير والاشتراك | MVP | 📝 planned | ✓ | — | — | — | happy-napping-reef.md |
 | 4 | النشر للإنتاج + فحص الصحة | MVP | ⬜ not started | — | — | — | — | — |
 | 5 | لوحة تحكم إدارية كاملة | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
 | 6 | تكامل GoHighLevel (GHL) | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
