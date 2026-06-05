@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { loginSchema } from '@/lib/validations/auth'
 import { createClient } from '@/lib/supabase/client'
-import type { ZodError } from 'zod'
 
 const TEAL = '#0D9488'
 const CARD = '#1E293B'

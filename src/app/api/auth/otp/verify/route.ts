@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     const supabase = createClient()
 
     // Find valid, unused OTP (AC-1.3: must be within 10 min)
-    const { data: record } = await supabase
+    const { data: record, error: dbError } = await supabase
       .from('otp_codes')
       .select('id, expires_at, used_at')
       .eq('phone', phone)
@@ -20,6 +20,12 @@ export async function POST(req: NextRequest) {
       .order('created_at', { ascending: false })
       .limit(1)
       .single()
+
+    if (dbError && dbError.code !== 'PGRST116') {
+      // PGRST116 = no rows found (expected) — other errors are infrastructure failures
+      console.error('[OTP verify] DB error:', dbError.code)
+      return NextResponse.json({ error: 'حدث خطأ — حاول مجدداً' }, { status: 500 })
+    }
 
     if (!record) {
       return NextResponse.json({ error: 'رمز التحقق غير صحيح' }, { status: 400 })
