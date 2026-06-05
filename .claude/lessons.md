@@ -1,6 +1,7 @@
 # Lessons — Cross-Border Closing Agent
 
 Last pruned: 2026-06-05
+Last updated: 2026-06-05 (Story 5 retro — L-004 added)
 
 ## Active lessons
 
@@ -35,6 +36,16 @@ await fetch(url, { method: 'POST', body: JSON.stringify(payload) }).catch(() => 
 **لماذا:** نمط تحقّق في `src/lib/email.ts` (Mailgun) و`src/lib/posthog.ts` (PostHog). قابل لإعادة الاستخدام في Story 6 (GHL) وStory 7 (Tap webhook notifications).
 
 **كيف أطبّق:** `if (!apiKey) return` → `fetch(...)` → `.catch(() => {})`. لا try/catch إضافية — fire-and-forget يعني أن الخدمة down ≠ feature down.
+
+---
+
+### L-004: Server Components → direct Supabase، لا HTTP self-call
+
+**القاعدة:** في Next.js App Router، إذا كان Server Component يحتاج بيانات من Supabase، استعلم مباشرةً بـ `createClient()` من `@/lib/supabase/server`. لا تستدعِ API route الخاص بك عبر `fetch(${baseUrl}/api/...)`.
+
+**لماذا:** self-referencing HTTP call يضيف round-trip زيادي (localhost → localhost) + يحتاج `NEXT_PUBLIC_APP_URL` كـ env var + يعقّد error handling + يُضيف latency. الـ cookie client يعمل مباشرةً في Server Components وRLS مُطبَّق تلقائياً.
+
+**كيف أطبّق:** `const supabase = await createClient()` داخل Server Component مباشرةً. الاستثناء الوحيد: Client Components لا تستطيع الوصول لـ cookies server-side — هناك تحتاج API route.
 
 ---
 
