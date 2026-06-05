@@ -55,9 +55,13 @@ export async function POST(req: NextRequest) {
 
     // AC-3.4: upsert subscription → active (UNIQUE broker_id ensures single row per broker)
     const payload = buildSubscriptionPayload(brokerId, tier, paymentIntentId, customerId)
-    await supabase
+    const { error: upsertError } = await supabase
       .from('subscriptions')
       .upsert(payload, { onConflict: 'broker_id' })
+    if (upsertError) {
+      console.error('[stripe webhook] upsert failed — Stripe will retry:', upsertError.message)
+      return NextResponse.json({ error: 'Database error' }, { status: 500 })
+    }
   }
 
   if (event.type === 'payment_intent.succeeded') {

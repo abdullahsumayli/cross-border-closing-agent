@@ -48,6 +48,8 @@ export default function PricingPage() {
             <button
               key={key}
               data-testid={`tier-${key}`}
+              aria-label={`${tier.nameAr} — ${tier.priceSar.toLocaleString('en-US')} ريال/شهر`}
+              aria-pressed={selectedTier === key}
               onClick={() => setSelectedTier(key)}
               className={[
                 'rounded-xl p-5 text-center border-2 transition-all cursor-pointer',
@@ -77,7 +79,10 @@ export default function PricingPage() {
 
         {/* Error */}
         {error && (
-          <div className="mb-4 rounded-lg bg-red-900/30 border border-red-700 px-4 py-2 text-sm text-red-300">
+          <div
+            role="alert"
+            className="mb-4 rounded-lg bg-red-900/30 border border-red-700 px-4 py-2 text-sm text-red-300"
+          >
             {error}
           </div>
         )}
