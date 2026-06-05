@@ -1,6 +1,8 @@
 // AC-2.3: WhatsApp Business API client (Meta Graph API)
 // AC-2.5: all errors logged + return structured result
 
+import crypto from 'crypto'
+
 const WA_BASE = 'https://graph.facebook.com/v18.0'
 
 export interface WhatsAppResult {
@@ -69,8 +71,11 @@ export function verifyWebhookSignature(
   signature: string,
   appSecret: string
 ): boolean {
-  const crypto = require('crypto')
   const expected = crypto.createHmac('sha256', appSecret).update(payload).digest('hex')
   const received = signature.replace('sha256=', '')
-  return crypto.timingSafeEqual(Buffer.from(expected, 'hex'), Buffer.from(received, 'hex'))
+  const expBuf = Buffer.from(expected, 'hex')
+  const recBuf = Buffer.from(received, 'hex')
+  // timingSafeEqual throws if buffers have different lengths
+  if (expBuf.length !== recBuf.length) return false
+  return crypto.timingSafeEqual(expBuf, recBuf)
 }

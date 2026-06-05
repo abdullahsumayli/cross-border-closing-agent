@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
+import Anthropic from '@anthropic-ai/sdk'
 import { verifyWebhookSignature, sendWhatsAppMessage, sendQualificationCardTobroker } from '@/lib/whatsapp'
 import { detectLanguage, processStep } from '@/lib/qualification/engine'
 import { generateArabicCard } from '@/lib/qualification/card-generator'
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/service'
 
 // GET: Meta webhook verification challenge
 export async function GET(req: NextRequest) {
@@ -49,7 +50,7 @@ async function processWebhookAsync(rawBody: string) {
   const messageText: string = message.text.body
   const waMessageId: string = message.id
 
-  const supabase = await createClient()
+  const supabase = createServiceClient()
 
   // Find broker by WhatsApp business number
   const businessPhone = change?.value?.metadata?.display_phone_number
@@ -191,7 +192,6 @@ async function processWebhookAsync(rawBody: string) {
 
 // Claude API call wrapper — injectable for testing
 async function claudeCall(prompt: string): Promise<string> {
-  const { default: Anthropic } = await import('@anthropic-ai/sdk')
   const client = new Anthropic()
   const msg = await client.messages.create({
     model: 'claude-haiku-4-5-20251001',
