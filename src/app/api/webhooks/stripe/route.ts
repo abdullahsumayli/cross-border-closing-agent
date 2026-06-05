@@ -4,13 +4,15 @@ import { verifyStripeSignature, buildSubscriptionPayload, type PricingTier } fro
 import { createServiceClient } from '@/lib/supabase/service'
 import { sendReceiptEmail } from '@/lib/email'
 
-// Stripe requires raw body for signature verification — disable body parsing
-export const config = { api: { bodyParser: false } }
-
 export async function POST(req: NextRequest) {
   const sig = req.headers.get('stripe-signature') ?? ''
   const rawBody = Buffer.from(await req.arrayBuffer())
-  const secret = process.env.STRIPE_WEBHOOK_SECRET!
+  const secret = process.env.STRIPE_WEBHOOK_SECRET
+
+  if (!secret) {
+    console.error('[stripe webhook] STRIPE_WEBHOOK_SECRET not configured')
+    return NextResponse.json({ error: 'Webhook not configured' }, { status: 500 })
+  }
 
   let event: Stripe.Event
   try {
@@ -59,7 +61,9 @@ export async function POST(req: NextRequest) {
   }
 
   if (event.type === 'payment_intent.succeeded') {
-    // AC-3.5: send receipt email
+    // AC-3.5: best-effort receipt email.
+    // Race note: this event may fire before checkout.session.completed writes the subscription.
+    // If sub is not found, we skip silently — Sentry will catch repeated misses at scale.
     const pi = event.data.object as Stripe.PaymentIntent
 
     const { data: sub } = await supabase

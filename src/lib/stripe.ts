@@ -15,7 +15,7 @@ export const PRICING_TIERS = {
     nameAr: 'مطوّر',
     nameEn: 'Developer',
     priceSar: 1500,
-    features: ['كل ميزات وسيط', 'دعم متعدد الوحدات', 'تقارير أداء متقدمة'],
+    features: ['كل ميزات وسيط', 'دعم متعدد الوحدات', 'أولوية في الدعم'],
   },
 } as const
 

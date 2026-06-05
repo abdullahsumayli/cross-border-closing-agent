@@ -30,8 +30,12 @@ export async function sendReceiptEmail(
   priceSar: number,
   tier: PricingTier
 ): Promise<void> {
-  const domain = process.env.MAILGUN_DOMAIN!
-  const apiKey = process.env.MAILGUN_API_KEY!
+  const domain = process.env.MAILGUN_DOMAIN
+  const apiKey = process.env.MAILGUN_API_KEY
+
+  if (!domain || !apiKey) {
+    throw new Error('MAILGUN_DOMAIN and MAILGUN_API_KEY are required to send email receipts')
+  }
 
   const body = new URLSearchParams({
     from: `Cross-Border Closing Agent <noreply@${domain}>`,
