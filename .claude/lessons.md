@@ -1,7 +1,7 @@
 # Lessons — Cross-Border Closing Agent
 
 Last pruned: 2026-06-05
-Last updated: 2026-06-05 (Story 5 retro — L-004 added)
+Last updated: 2026-06-05 (Story 6 retro — L-005 added)
 
 ## Active lessons
 
@@ -46,6 +46,22 @@ await fetch(url, { method: 'POST', body: JSON.stringify(payload) }).catch(() => 
 **لماذا:** self-referencing HTTP call يضيف round-trip زيادي (localhost → localhost) + يحتاج `NEXT_PUBLIC_APP_URL` كـ env var + يعقّد error handling + يُضيف latency. الـ cookie client يعمل مباشرةً في Server Components وRLS مُطبَّق تلقائياً.
 
 **كيف أطبّق:** `const supabase = await createClient()` داخل Server Component مباشرةً. الاستثناء الوحيد: Client Components لا تستطيع الوصول لـ cookies server-side — هناك تحتاج API route.
+
+---
+
+### L-005: undefined→null mismatch عند حدود التكامل
+
+**القاعدة:** عند تمرير بيانات من qualification engine (يُعيد `undefined`) إلى أي interface تتوقع `null`، أضف `?? null` على كل حقل nullable في نقطة الاتصال.
+
+**لماذا:** `ts-jest` يجتاز الـ type mismatch أحياناً، لكن `tsc` في `npm run build` يفشل. Bug ظهر في Story 6 عند ربط `result.seriousnessScore` (type: `number | undefined`) بـ `GhlCardInput.seriousnessScore` (type: `number | null`) — الاختبارات اجتازت لكن البناء فشل.
+
+**كيف أطبّق:** في كل استدعاء لـ service function خارجية تأخذ typed interface:
+```typescript
+void syncService(id, {
+  field: result.field ?? null,   // ← دائماً ?? null على الحقول الاختيارية
+})
+```
+ابحث عن `result.` في كل مكان يُمرَّر فيه لـ interface خارجية — تحقق من compatibility.
 
 ---
 

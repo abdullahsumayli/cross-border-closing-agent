@@ -5,12 +5,13 @@
 
 Last updated: 2026-06-05
 Current sprint: v2 — Story 6
-Last command: /7-eo-ship Story-6
+Last command: /8-eo-retro Story-6
 
 ## Retros
 
 - 2026-06-05 — docs/retros/2026-06-05.md (avg composite 90، focus: QA+UX)
 - 2026-06-05 — docs/retros/2026-06-05-story5.md (Story 5 · composite 90 · لا bridge-gaps · L-004 added)
+- 2026-06-05 — docs/retros/2026-06-05-story6.md (Story 6 · composite 90 · لا bridge-gaps · L-005 added · Architecture Q6↑8)
 
 ## Stories
 
