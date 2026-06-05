@@ -4,7 +4,39 @@ Last pruned: 2026-06-05
 
 ## Active lessons
 
-None yet. First lesson will be captured on the first score < 90 or first bug.
+### L-001: External credentials أولاً — قبل `/3-eo-code`
+
+**القاعدة:** قبل البدء في كود أي AC يعتمد على خدمة خارجية (Stripe price IDs، Sentry DSN، Unifonic API key)، تحقق أن الـ credential موجود في `.env.local`. إذا لم يكن — وثّقه كـ "blocked on human action" في ملف الخطة وتقدّم للكود التجريبي فقط.
+
+**لماذا:** Story 3 QA=7 (بدلاً من 9) لأن `STRIPE_PRICE_BROKER_ID` + `STRIPE_PRICE_DEVELOPER_ID` لم تُنشأ في Stripe Dashboard → لا sandbox checkout test → فقدنا نقطتين في QA.
+
+**كيف أطبّق:** في `/2-eo-dev-plan`، أضف قسم "External Prerequisites" يُدرج كل credential مطلوب. أكمل إدراجها في `.env.local` قبل `/3-eo-code`.
+
+---
+
+### L-002: Browser test أثناء `/3-eo-code` (ليس بعده)
+
+**القاعدة:** لكل ملف `.tsx` جديد، شغّل `npm run dev`، افتح في browser على 375px، وخذ screenshot قبل commit. ليس قبل الشحن — أثناء التطوير.
+
+**لماذا:** UX cap عند 8 في Stories 3 و4 بسبب "browser لم يُفتَح فعلياً." 5 دقائق أثناء `/3-eo-code` توفّر bridge-gaps session كاملة (=30-45 دقيقة) لاحقاً.
+
+**كيف أطبّق:** بعد كتابة أي component جديد: `npm run dev` → `localhost:3000/{route}` → DevTools → iPhone SE (375×667) → screenshot.
+
+---
+
+### L-003: Pattern الخدمات الخارجية — fetch مباشر بدون dependency
+
+**القاعدة:** لأي خدمة analytics/notification/webhook خارجية في server-side route، استخدم نمط:
+```typescript
+await fetch(url, { method: 'POST', body: JSON.stringify(payload) }).catch(() => {})
+```
+لا dependency جديدة. guard على API key أولاً. fire-and-forget دائماً.
+
+**لماذا:** نمط تحقّق في `src/lib/email.ts` (Mailgun) و`src/lib/posthog.ts` (PostHog). قابل لإعادة الاستخدام في Story 6 (GHL) وStory 7 (Tap webhook notifications).
+
+**كيف أطبّق:** `if (!apiKey) return` → `fetch(...)` → `.catch(() => {})`. لا try/catch إضافية — fire-and-forget يعني أن الخدمة down ≠ feature down.
+
+---
 
 ## Archived lessons
 

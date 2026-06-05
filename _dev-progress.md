@@ -4,8 +4,12 @@
 > كل أمر مُرقَّم (`/1-eo-dev-start` → `/8-eo-retro`) يكتب هنا عند نهاية التشغيل.
 
 Last updated: 2026-06-05
-Current sprint: Weekend MVP
-Last command: /7-eo-ship Story-4
+Current sprint: Weekend MVP — COMPLETE ✅
+Last command: /8-eo-retro
+
+## Retros
+
+- 2026-06-05 — docs/retros/2026-06-05.md (avg composite 90، focus: QA+UX)
 
 ## Stories
 
