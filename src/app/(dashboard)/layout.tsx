@@ -7,6 +7,7 @@ const NAV = [
   { href: '/dashboard', label: 'نظرة عامة' },
   { href: '/dashboard/leads', label: 'الاستفسارات' },
   { href: '/dashboard/pricing', label: 'الاشتراك' },
+  { href: '/dashboard/settings', label: 'الإعدادات' },
 ]
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

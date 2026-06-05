@@ -4,6 +4,7 @@ import { verifyWebhookSignature, sendWhatsAppMessage, sendQualificationCardTobro
 import { detectLanguage, processStep } from '@/lib/qualification/engine'
 import { generateArabicCard } from '@/lib/qualification/card-generator'
 import { createServiceClient } from '@/lib/supabase/service'
+import { syncCardToGHL } from '@/lib/ghl'
 
 // GET: Meta webhook verification challenge
 export async function GET(req: NextRequest) {
@@ -190,6 +191,20 @@ async function processWebhookAsync(rawBody: string) {
       legal_eligibility: result.legalEligibility,
       seriousness_score: result.seriousnessScore,
       card_summary_ar: card,
+    })
+
+    // AC-6.1: fire-and-forget GHL sync — GHL down ≠ WhatsApp flow blocked
+    void syncCardToGHL(broker.id, {
+      buyerPhone,
+      buyerName: buyerPhone,
+      detectedLanguage: lead.detected_language ?? 'en',
+      budgetSar: lead.budget_sar,
+      seriousnessScore: result.seriousnessScore,
+      legalEligibility: result.legalEligibility,
+      timeline: lead.timeline,
+      propertyType: lead.property_type,
+      nationality: lead.nationality,
+      cardSummaryAr: card,
     })
 
     // Send card to broker
