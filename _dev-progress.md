@@ -5,7 +5,7 @@
 
 Last updated: 2026-06-05
 Current sprint: Weekend MVP
-Last command: /3-eo-code Story-4
+Last command: /4-eo-review Story-4
 
 ## Stories
 
@@ -14,7 +14,7 @@ Last command: /3-eo-code Story-4
 | 1 | تسجيل الوسيط | MVP | ✅ shipped | ✓ | 34/34 | 90 | 2026-06-05 | 37e5d71 → GitHub main |
 | 2 | استقبال وتأهيل الاستفسار الأجنبي | MVP | ✅ shipped | ✓ | 36/36 | 90 | 2026-06-05 | 74e334b → GitHub main |
 | 3 | التسعير والاشتراك | MVP | ✅ shipped | ✓ | 19/19 | 90 | 2026-06-05 | 03cac6e → GitHub main |
-| 4 | النشر للإنتاج + فحص الصحة | MVP | 🔨 coding | ✓ | 16/16 | — | — | e5818d8 — review pending |
+| 4 | النشر للإنتاج + فحص الصحة | MVP | 🧪 scoring | ✓ | 17/17 | — | — | ffc0199 — review clean |
 | 5 | لوحة تحكم إدارية كاملة | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
 | 6 | تكامل GoHighLevel (GHL) | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
 | 7 | Tap Payments (مسار خليجي ثانٍ) + PDPL | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
