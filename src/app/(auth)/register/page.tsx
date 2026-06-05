@@ -204,14 +204,19 @@ function Field({ label, type, placeholder, error, value, onChange }: {
   label: string; type: string; placeholder: string; error?: string;
   value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }) {
+  const id = `field-${label.replace(/\s+/g, '-')}`
   return (
     <div>
-      <label style={{ display: 'block', color: '#94A3B8', fontSize: 13, marginBottom: 4 }}>{label}</label>
+      <label htmlFor={id} style={{ display: 'block', color: '#94A3B8', fontSize: 13, marginBottom: 4 }}>{label}</label>
       <input
+        id={id}
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        aria-label={label}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
         style={{
           width: '100%', boxSizing: 'border-box',
           background: '#0F172A', border: `1px solid ${error ? '#F87171' : '#334155'}`,
@@ -219,8 +224,8 @@ function Field({ label, type, placeholder, error, value, onChange }: {
           fontFamily: 'Cairo, Tajawal, sans-serif',
         }}
       />
-      {/* AC-1.4: specific error inline */}
-      {error && <p style={{ color: '#F87171', fontSize: 12, margin: '3px 0 0' }}>{error}</p>}
+      {/* AC-1.4: specific error inline with aria-live for screen readers */}
+      {error && <p id={`${id}-error`} role="alert" aria-live="polite" style={{ color: '#F87171', fontSize: 12, margin: '3px 0 0' }}>{error}</p>}
     </div>
   )
 }
