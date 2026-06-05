@@ -1,0 +1,28 @@
+# Environment
+.env.local
+.env.*.local
+.env
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js
+.next/
+out/
+
+# Build artifacts
+dist/
+build/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+docs/secrets/
+*.pem
+*.key

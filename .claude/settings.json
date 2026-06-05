@@ -1,0 +1,10 @@
+{
+  "_comment": "SessionStart hook: auto-loads lessons.md at every session start.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "command": "if [ -f .claude/lessons.md ]; then echo ''; echo '=== Active Lessons ==='; cat .claude/lessons.md; echo '=== End Lessons ==='; echo ''; fi"
+      }
+    ]
+  }
+}
