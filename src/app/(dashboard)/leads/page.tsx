@@ -177,36 +177,42 @@ export default function LeadsPage() {
                 textDecoration: 'none',
                 color: 'inherit',
                 display: 'flex',
-                alignItems: 'center',
-                gap: 12,
+                flexDirection: 'column',
+                gap: 6,
               }}
             >
-              <span
-                style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: '50%',
-                  background: STATUS_COLOR[lead.status] ?? '#64748B',
-                  flexShrink: 0,
-                }}
-              />
-              <span style={{ flex: 1, fontSize: 14 }}>
-                {lead.buyer_name ?? lead.buyer_phone}
-              </span>
-              <span style={{ fontSize: 12, color: '#94A3B8', minWidth: 60 }}>
-                {formatLanguage(lead.detected_language ?? '')}
-              </span>
-              <span style={{ fontSize: 12, color: STATUS_COLOR[lead.status] ?? '#94A3B8', minWidth: 90 }}>
-                {formatLeadStatus(lead.status)}
-              </span>
-              {lead.budget_sar != null && (
-                <span style={{ fontSize: 12, color: '#94A3B8' }}>
-                  {lead.budget_sar.toLocaleString('en-US')} ريال
+              {/* row 1: dot + name + status */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', flexWrap: 'wrap' }}>
+                <span
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    background: STATUS_COLOR[lead.status] ?? '#64748B',
+                    flexShrink: 0,
+                  }}
+                />
+                <span style={{ flex: 1, fontSize: 14, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {lead.buyer_name ?? lead.buyer_phone}
                 </span>
-              )}
-              <span style={{ fontSize: 11, color: '#475569' }}>
-                {new Date(lead.created_at).toLocaleDateString('en-GB')}
-              </span>
+                <span style={{ fontSize: 12, color: STATUS_COLOR[lead.status] ?? '#94A3B8', flexShrink: 0 }}>
+                  {formatLeadStatus(lead.status)}
+                </span>
+              </div>
+              {/* row 2: meta — lang + budget + date */}
+              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', paddingRight: 18 }}>
+                <span style={{ fontSize: 11, color: '#94A3B8' }}>
+                  {formatLanguage(lead.detected_language ?? '')}
+                </span>
+                {lead.budget_sar != null && (
+                  <span style={{ fontSize: 11, color: '#94A3B8' }}>
+                    {lead.budget_sar.toLocaleString('en-US')} ريال
+                  </span>
+                )}
+                <span style={{ fontSize: 11, color: '#475569' }}>
+                  {new Date(lead.created_at).toLocaleDateString('en-GB')}
+                </span>
+              </div>
             </Link>
           ))}
         </div>
