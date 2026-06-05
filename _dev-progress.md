@@ -5,7 +5,7 @@
 
 Last updated: 2026-06-05
 Current sprint: v2 — Story 5
-Last command: /2-eo-dev-plan Story-5
+Last command: /5-eo-score
 
 ## Retros
 
@@ -19,7 +19,7 @@ Last command: /2-eo-dev-plan Story-5
 | 2 | استقبال وتأهيل الاستفسار الأجنبي | MVP | ✅ shipped | ✓ | 36/36 | 90 | 2026-06-05 | 74e334b → GitHub main |
 | 3 | التسعير والاشتراك | MVP | ✅ shipped | ✓ | 19/19 | 90 | 2026-06-05 | 03cac6e → GitHub main |
 | 4 | النشر للإنتاج + فحص الصحة | MVP | ✅ shipped | ✓ | 17/17 | 90 | 2026-06-05 | 9ec99c6 → GitHub main |
-| 5 | لوحة تحكم إدارية كاملة | v2 | 📝 planned | ✓ | — | — | — | Story-5 plan approved |
+| 5 | لوحة تحكم إدارية كاملة | v2 | 🧪 scoring | ✓ | 45/45 | 90 | — | 8a48099 |
 | 6 | تكامل GoHighLevel (GHL) | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
 | 7 | Tap Payments (مسار خليجي ثانٍ) + PDPL | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
 | 8 | تحليلات وتقارير الوسيط | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
