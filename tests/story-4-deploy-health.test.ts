@@ -62,6 +62,18 @@ describe('AC-4.3 — Sentry initialization', () => {
   })
 })
 
+// ─── AC-4.1 + AC-4.4: deploy runbook (human action — documented) ─────────────
+
+describe('AC-4.1 + AC-4.4 — deploy runbook exists', () => {
+  it('docs/deploy-runbook.md موجود ويغطي Nginx + SSL + uptime monitor @AC-4.1 @AC-4.4', () => {
+    const content = fs.readFileSync(path.join(ROOT, 'docs', 'deploy-runbook.md'), 'utf8')
+    expect(content).toContain('nginx')
+    expect(content).toContain('certbot')
+    expect(content).toContain('api/health')
+    expect(content).toContain('5 min') // uptime check interval
+  })
+})
+
 // ─── AC-4.5: deploy script ────────────────────────────────────────────────────
 
 describe('AC-4.5 — deploy script idempotent', () => {
