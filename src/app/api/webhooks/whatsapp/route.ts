@@ -198,12 +198,12 @@ async function processWebhookAsync(rawBody: string) {
       buyerPhone,
       buyerName: buyerPhone,
       detectedLanguage: lead.detected_language ?? 'en',
-      budgetSar: lead.budget_sar,
-      seriousnessScore: result.seriousnessScore,
-      legalEligibility: result.legalEligibility,
-      timeline: lead.timeline,
-      propertyType: lead.property_type,
-      nationality: lead.nationality,
+      budgetSar: lead.budget_sar ?? null,
+      seriousnessScore: result.seriousnessScore ?? null,
+      legalEligibility: result.legalEligibility ?? null,
+      timeline: lead.timeline ?? null,
+      propertyType: lead.property_type ?? null,
+      nationality: lead.nationality ?? null,
       cardSummaryAr: card,
     })
 

@@ -5,7 +5,7 @@
 
 Last updated: 2026-06-05
 Current sprint: v2 — Story 6
-Last command: /3-eo-code Story-6
+Last command: /5-eo-score Story-6
 
 ## Retros
 
@@ -21,7 +21,7 @@ Last command: /3-eo-code Story-6
 | 3 | التسعير والاشتراك | MVP | ✅ shipped | ✓ | 19/19 | 90 | 2026-06-05 | 03cac6e → GitHub main |
 | 4 | النشر للإنتاج + فحص الصحة | MVP | ✅ shipped | ✓ | 17/17 | 90 | 2026-06-05 | 9ec99c6 → GitHub main |
 | 5 | لوحة تحكم إدارية كاملة | v2 | ✅ shipped | ✓ | 45/45 | 90 | 2026-06-05 | 855bb49 → GitHub main |
-| 6 | تكامل GoHighLevel (GHL) | v2 | 🔨 coding | ✓ | 26/26 | — | — | 592785f — /3-eo-code complete |
+| 6 | تكامل GoHighLevel (GHL) | v2 | 🧪 scoring | ✓ | 26/26 | 90 | — | 002ec75 — ship-ready |
 | 7 | Tap Payments (مسار خليجي ثانٍ) + PDPL | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
 | 8 | تحليلات وتقارير الوسيط | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
 
