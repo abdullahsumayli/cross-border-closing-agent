@@ -3,7 +3,12 @@
   "hooks": {
     "SessionStart": [
       {
-        "command": "if [ -f .claude/lessons.md ]; then echo ''; echo '=== Active Lessons ==='; cat .claude/lessons.md; echo '=== End Lessons ==='; echo ''; fi"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -f .claude/lessons.md ]; then echo ''; echo '=== Active Lessons ==='; cat .claude/lessons.md; echo '=== End Lessons ==='; echo ''; fi"
+          }
+        ]
       }
     ]
   }
