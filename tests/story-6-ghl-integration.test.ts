@@ -1,7 +1,18 @@
-// Story 6 [@Phase2]
-describe.skip('Story 6 [@Phase2] — تكامل GHL', () => {
-  it('بطاقة تأهيل تُنشئ contact في GHL خلال 60s @AC-6.1', async () => { /* TODO */ });
-  it('حقول تُربَط بحقول GHL مخصصة @AC-6.2', async () => { /* TODO */ });
-  it('فشل مزامنة يُسجَّل Sentry + retry 3 @AC-6.3', async () => { /* TODO */ });
-  it('ربط/فصل GHL عبر OAuth @AC-6.4', async () => { /* TODO */ });
+// Story 6 [@Phase2]: تكامل GoHighLevel (GHL)
+describe.skip('Story 6 [@Phase2] — تكامل GoHighLevel (GHL)', () => {
+  it('AC-6.1 عند إنشاء بطاقة تأهيل، يُنشأ/يُحدَّث contact مقابل في GHL خلال 60 ثانية @AC-6.1', async () => {
+    // TODO: implement
+  });
+
+  it('AC-6.2 حقول البطاقة (الميزانية، اللغة، الجدية) تُربَط بحقول GHL مخصصة @AC-6.2', async () => {
+    // TODO: implement
+  });
+
+  it('AC-6.3 فشل المزامنة يُسجَّل في Sentry ويُعاد المحاولة حتى 3 مرات @AC-6.3', async () => {
+    // TODO: implement
+  });
+
+  it('AC-6.4 الوسيط يربط/يفصل حساب GHL من الإعدادات عبر OAuth @AC-6.4', async () => {
+    // TODO: implement
+  });
 });

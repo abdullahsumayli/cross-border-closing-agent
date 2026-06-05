@@ -1,20 +1,51 @@
 # Dev Progress — Cross-Border Closing Agent
 
-> Tracker لـ `/eo-guide`. الـ filesystem مصدر الحقيقة.
+> Tracker لـ `/eo-guide`. الـ filesystem مصدر الحقيقة؛ هذا الملف view يُصالحه `/eo-guide`.
+> كل أمر مُرقَّم (`/1-eo-dev-start` → `/8-eo-retro`) يكتب هنا عند نهاية التشغيل.
 
 Last updated: 2026-06-05
 Current sprint: Weekend MVP
-Last command: /1-eo-dev-start
+Last command: /6-eo-bridge-gaps Story-1
 
 ## Stories
 
-| # | القصة | Phase | الحالة |
-|---|-------|-------|---------|
-| 1 | تسجيل الوسيط | MVP | ⧾ not started |
-| 2 | استقبال وتأهيل الاستفسار الأجنبي | MVP | ⧾ not started |
-| 3 | التسعير والاشتراك | MVP | ⧾ not started |
-| 4 | النشر للإنتاج + فحص الصحة | MVP | ⧾ not started |
-| 5 | لوحة تحكم إدارية كاملة | v2 | 🧐 frozen |
-| 6 | تكامل GoHighLevel (GHL) | v2 | 🧐 frozen |
-| 7 | Tap Payments + PDPL | v2 | 🧐 frozen |
-| 8 | تحليلات وتقارير الوسيط | v2 | 🧐 frozen |
+| # | القصة | Phase | الحالة | خطة | اختبارات | درجة | شُحن | ملاحظات |
+|---|-------|-------|--------|-----|----------|------|------|---------|
+| 1 | تسجيل الوسيط | MVP | 🧪 scoring | ✓ | 34/34 | 90 | — | 2026-06-05-1800.md ✅ |
+| 2 | استقبال وتأهيل الاستفسار الأجنبي | MVP | ⬜ not started | — | — | — | — | — |
+| 3 | التسعير والاشتراك | MVP | ⬜ not started | — | — | — | — | — |
+| 4 | النشر للإنتاج + فحص الصحة | MVP | ⬜ not started | — | — | — | — | — |
+| 5 | لوحة تحكم إدارية كاملة | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
+| 6 | تكامل GoHighLevel (GHL) | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
+| 7 | Tap Payments (مسار خليجي ثانٍ) + PDPL | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
+| 8 | تحليلات وتقارير الوسيط | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
+
+## Status legend
+
+- ⬜ not started — لا plan file بعد
+- 📝 planned — `docs/plans/story-N-*.md` موجود، الاختبارات لا تزال `.skip`
+- 🔨 coding — الاختبارات تُكتب/تُمرَّر
+- 🧪 scoring — الاختبارات تمر، في انتظار `/5-eo-score`
+- 🩹 bridging gaps — درجة 80-89، `/6-eo-bridge-gaps` تعمل
+- 🧊 frozen — مؤجَّل لـ v2 (مُوسَم `[@Phase2]` في BRD). يُتخطى في Weekend MVP.
+- ✅ shipped — مُدمَج في main + مُنشَر
+- ⚠️ inconsistent — فحوصات الحالة فشلت، راجع `/eo-guide`
+
+## Invariants
+
+- درجة < 80 → الحالة لا تصبح `shipped`
+- `shipped` → يجب أن يكون هناك صف درجة ≥ 90 + سجل نشر
+- `coding` بدون plan file = مستحيل؛ `/eo-guide` يُعلّمه inconsistent
+- صفوف Phase `v2` تبقى `🧊 frozen` حتى شحن الـ MVP
+
+## Cadence — شحن نهاية الأسبوع
+
+MVP = عطلة نهاية أسبوع واحدة.
+
+| اليوم | الكتلة | ما يُشحن |
+|-------|--------|----------|
+| **الجمعة مساءً** | `/1-eo-dev-start` | SaaSfast M3، scaffold، BRD مُقسَّم، tracker مُبذَّر |
+| **السبت** | `/2-eo-dev-plan` → `/3-eo-code` | القصص 1-4 واحدة تلو الأخرى، TDD، elegance pause |
+| **الأحد** | `/4-eo-review` → `/5-eo-score` → `/6-eo-bridge-gaps` → `/7-eo-ship` | 90+ → للإنتاج، فحص صحة، أول 3 مستخدمين |
+
+بعد الأسبوع — `/8-eo-retro` مرة واحدة، ثم تخطيط v2 ببدء قصة 5.

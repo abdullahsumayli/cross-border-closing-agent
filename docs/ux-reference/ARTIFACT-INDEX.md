@@ -13,3 +13,15 @@
 | `product-demo.jsx` | Story 1، Story 2 | تخطيط سير العمل الأساسي، الـ CTAs الرئيسية، الحالات الفارغة، بطاقة التأهيل |
 | `onboarding-flow.jsx` | Story 1، Story 3 | شاشات التسجيل الأول، حقول النموذج، مؤشر التقدم، ربط واتساب |
 | `admin-dashboard.jsx` | Story 2، Story 5 | تخطيط جدول البيانات، مواضع الفلتر، عرض بطاقات التأهيل |
+
+---
+
+## استخدام الـ Artifacts
+
+```bash
+# عرض artifact في المتصفح (Next.js dev server يجب أن يكون شُغّال)
+# أو افتح الملف مباشرة في المتصفح:
+open docs/ux-reference/product-demo.jsx
+```
+
+هذه ملفات JSX — ليست مجرد wireframes. تعكس التفاعل الحقيقي المتوقع.

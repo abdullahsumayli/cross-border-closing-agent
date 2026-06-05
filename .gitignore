@@ -17,12 +17,39 @@ build/
 
 # Logs
 *.log
+npm-debug.log*
+.bootstrap-dev.log
+.bootstrap-dev.pid
+.bootstrap-failures.log
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Secrets
+# Secrets & credentials
 docs/secrets/
 *.pem
 *.key
+*.p12
+
+# IDE
+.idea/
+.vscode/settings.json
+
+# EO-Brain (strategy source — not project code)
+microsaas-dev-os-main/
+microsaas-dev-os-main.zip
+0-Scorecards/
+1-ProjectBrain/
+2-GTM/
+3-Newskills/
+4-Architecture/
+5-CodeHandover/
+Samail/
+references/
+INDEX.md
+_language-pref.md
+_progress.md
+
+# TypeScript build cache
+tsconfig.tsbuildinfo

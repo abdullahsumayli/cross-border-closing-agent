@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
+        // MENA-first: Cairo for headers, Tajawal for body
         cairo: ['Cairo', 'sans-serif'],
         tajawal: ['Tajawal', 'sans-serif'],
         sans: ['Tajawal', 'Cairo', 'sans-serif'],
