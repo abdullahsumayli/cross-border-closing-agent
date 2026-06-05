@@ -1,7 +1,7 @@
 # Lessons — Cross-Border Closing Agent
 
 Last pruned: 2026-06-05
-Last updated: 2026-06-05 (Story 6 retro — L-005 added)
+Last updated: 2026-06-05 (Story 8 retro — L-006 added)
 
 ## Active lessons
 
@@ -62,6 +62,16 @@ void syncService(id, {
 })
 ```
 ابحث عن `result.` في كل مكان يُمرَّر فيه لـ interface خارجية — تحقق من compatibility.
+
+---
+
+### L-006: ux-reference artifact قبل كل قصة UI — يرفع UX cap من 8 → 9+
+
+**القاعدة:** لكل قصة تحتوي ملف `.tsx` جديداً، أنشئ `docs/ux-reference/story-N-*.html` (wireframe نصي أو stub HTML) قبل `/3-eo-code`. حتى stub بسيط يُعدّ artifact ويرفع سقف UX hat.
+
+**لماذا:** Stories 5, 6, 8 — UX cap عند 8 في جميعها بسبب "لا ux-reference artifact للقصص v2". إنشاء stub قبل التطوير يمنع الـ cap ويرفع UX Q7 (ux-reference match) من 0 → 8+.
+
+**كيف أطبّق:** في `/2-eo-dev-plan`، إذا كان الـ plan يتضمن `.tsx` جديد → أضف "إنشاء `docs/ux-reference/story-N-layout.html`" كأول خطوة قبل `/3-eo-code`. Stub بسيط بـ dir="rtl" والعناصر الرئيسية يكفي.
 
 ---
 

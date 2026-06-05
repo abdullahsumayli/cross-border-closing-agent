@@ -5,13 +5,14 @@
 
 Last updated: 2026-06-05
 Current sprint: v2 — Story 6
-Last command: /5-eo-score Story-8
+Last command: /8-eo-retro Story-8
 
 ## Retros
 
 - 2026-06-05 — docs/retros/2026-06-05.md (avg composite 90، focus: QA+UX)
 - 2026-06-05 — docs/retros/2026-06-05-story5.md (Story 5 · composite 90 · لا bridge-gaps · L-004 added)
 - 2026-06-05 — docs/retros/2026-06-05-story6.md (Story 6 · composite 90 · لا bridge-gaps · L-005 added · Architecture Q6↑8)
+- 2026-06-05 — docs/retros/2026-06-05-story8.md (Story 8 · composite 92 · QA↑9 · L-006 added · focus: UX)
 
 ## Stories
 
@@ -24,7 +25,7 @@ Last command: /5-eo-score Story-8
 | 5 | لوحة تحكم إدارية كاملة | v2 | ✅ shipped | ✓ | 45/45 | 90 | 2026-06-05 | 855bb49 → GitHub main |
 | 6 | تكامل GoHighLevel (GHL) | v2 | ✅ shipped | ✓ | 26/26 | 90 | 2026-06-05 | 08137d5 → GitHub main |
 | 7 | Tap Payments (مسار خليجي ثانٍ) + PDPL | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
-| 8 | تحليلات وتقارير الوسيط | v2 | 🧪 scoring | ✓ | 25/25 | 92 | — | 7be6af8 — QA↑9 (L-001 N/A) |
+| 8 | تحليلات وتقارير الوسيط | v2 | ✅ shipped | ✓ | 25/25 | 92 | 2026-06-05 | a9120a1 → GitHub main (pending push) |
 
 ## Status legend
 
