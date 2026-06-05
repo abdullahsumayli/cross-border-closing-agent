@@ -40,7 +40,8 @@ export async function GET(req: NextRequest) {
     const response = NextResponse.redirect('/dashboard/settings?ghl=connected')
     response.cookies.delete('ghl_oauth_state')
     return response
-  } catch {
+  } catch (err) {
+    console.error('[GHL callback] token exchange failed:', err)
     return NextResponse.redirect('/dashboard/settings?ghl=error&reason=token_exchange')
   }
 }
