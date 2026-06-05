@@ -53,3 +53,6 @@ _progress.md
 
 # TypeScript build cache
 tsconfig.tsbuildinfo
+
+# Next.js generated (auto-created by next build, must not be committed)
+next-env.d.ts
