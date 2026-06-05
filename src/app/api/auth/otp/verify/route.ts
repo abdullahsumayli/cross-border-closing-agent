@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const { phone, code } = otpSchema.parse(body)
 
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Find valid, unused OTP (AC-1.3: must be within 10 min)
     const { data: record, error: dbError } = await supabase

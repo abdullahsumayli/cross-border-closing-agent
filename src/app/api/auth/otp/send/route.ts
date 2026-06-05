@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const { phone } = schema.parse(body)
 
-    const supabase = createClient()
+    const supabase = await createClient()
 
     // Rate limit: max 5 per day per phone (AC-1.2)
     const since = new Date()

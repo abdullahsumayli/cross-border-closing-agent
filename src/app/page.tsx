@@ -9,7 +9,7 @@ export default function Home() {
           وكيل واتساب ذكي للاستفسارات العقارية الأجنبية
         </p>
         <p className="text-sm text-gray-400 mt-8">
-          Bootstrap complete — run <code>/2-eo-dev-plan Story-1</code> to start
+          Bootstrap complete — run <code>/2-eo-dev-plan Story-1-تسجيل-الوسيط</code> to start
         </p>
       </div>
     </main>

@@ -64,12 +64,19 @@ export default function RegisterPage() {
       return
     }
 
-    // Send OTP to phone
-    await fetch('/api/auth/otp/send', {
+    // Send OTP to phone — AC-1.2: check response before advancing
+    const otpRes = await fetch('/api/auth/otp/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ phone: form.phone }),
     })
+
+    if (!otpRes.ok) {
+      const { error: otpError } = await otpRes.json().catch(() => ({ error: 'فشل إرسال الرمز' }))
+      setErrors({ phone: otpError ?? 'فشل إرسال الرمز — حاول مجدداً' })
+      setLoading(false)
+      return
+    }
 
     setStep(1)
     setLoading(false)
