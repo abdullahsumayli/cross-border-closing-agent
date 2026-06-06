@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const NAV = [
-  { href: '/dashboard', label: 'نظرة عامة' },
-  { href: '/dashboard/leads', label: 'الاستفسارات' },
-  { href: '/dashboard/pricing', label: 'الاشتراك' },
-  { href: '/dashboard/settings', label: 'الإعدادات' },
+  { href: '/', label: 'نظرة عامة' },
+  { href: '/leads', label: 'الاستفسارات' },
+  { href: '/pricing', label: 'الاشتراك' },
+  { href: '/settings', label: 'الإعدادات' },
 ]
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -40,7 +40,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           Cross-Border
         </strong>
         {NAV.map(({ href, label }) => {
-          const active = pathname === href || (href !== '/dashboard' && pathname.startsWith(href))
+          const active = pathname === href || (href !== '/' && pathname.startsWith(href))
           return (
             <Link
               key={href}

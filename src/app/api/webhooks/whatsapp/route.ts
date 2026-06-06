@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Anthropic from '@anthropic-ai/sdk'
 import { verifyWebhookSignature, sendWhatsAppMessage, sendQualificationCardTobroker } from '@/lib/whatsapp'
 import { detectLanguage, processStep } from '@/lib/qualification/engine'
 import { generateArabicCard } from '@/lib/qualification/card-generator'
@@ -225,11 +224,18 @@ async function processWebhookAsync(rawBody: string) {
 
 // Claude API call wrapper — injectable for testing
 async function claudeCall(prompt: string): Promise<string> {
-  const client = new Anthropic()
-  const msg = await client.messages.create({
-    model: 'claude-haiku-4-5-20251001',
-    max_tokens: 10,
-    messages: [{ role: 'user', content: prompt }],
+  const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'anthropic/claude-haiku-4-5',
+      max_tokens: 10,
+      messages: [{ role: 'user', content: prompt }],
+    }),
   })
-  return (msg.content[0] as { text: string }).text.trim()
+  const data = await res.json()
+  return (data.choices[0].message.content as string).trim()
 }
