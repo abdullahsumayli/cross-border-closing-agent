@@ -14,12 +14,11 @@
     "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.30.0",
     "@sentry/nextjs": "^8.0.0",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.39.0",
     "@tanstack/react-query": "^5.17.0",
-    "next": "^16.2.7",
+    "next": "^15.0.0",
     "posthog-js": "^1.96.0",
     "react": "^18",
     "react-dom": "^18",
