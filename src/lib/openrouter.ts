@@ -40,3 +40,32 @@ export async function detectLanguageViaOpenRouter(prompt: string): Promise<strin
     return 'unknown'
   }
 }
+
+// Story 9 AC-9.1: general text generation (longer output than language detection).
+// Throws on failure so the caller (generate route) can surface a real error to the
+// broker — unlike language detection, a failed ad generation is a user-facing action
+// they can retry, not a background inbound message we must never drop.
+export async function generateViaOpenRouter(prompt: string, maxTokens = 800): Promise<string> {
+  const apiKey = process.env.OPENROUTER_API_KEY
+  if (!apiKey) throw new Error('OPENROUTER_API_KEY missing')
+
+  const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'anthropic/claude-haiku-4-5',
+      max_tokens: maxTokens,
+      messages: [{ role: 'user', content: prompt }],
+    }),
+  })
+
+  const data = await res.json()
+  const content = data?.choices?.[0]?.message?.content
+  if (typeof content !== 'string') {
+    throw new Error('OpenRouter returned an unexpected response shape')
+  }
+  return content.trim()
+}

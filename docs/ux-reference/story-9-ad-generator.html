@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- UX reference stub — Story 9: AI multilingual ad generator (L-006). RTL ground truth. -->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Story 9 — مولّد الإعلان بالـ AI</title>
+  <style>
+    body { font-family: Tajawal, sans-serif; max-width: 640px; margin: 0 auto; padding: 24px 16px; color: #0F172A; }
+    h1 { font-family: Cairo, sans-serif; }
+    .field { display: grid; gap: 6px; margin-bottom: 16px; }
+    input, select { padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; }
+    .cta { background: #0F766E; color: #fff; padding: 12px 20px; border-radius: 8px; font-weight: 700; border: none; }
+    .card { border: 1px solid #E2E8F0; border-radius: 8px; padding: 16px; margin-top: 12px; }
+    .lang { color: #0F766E; font-weight: 700; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h1>إعلان جديد بالـ AI</h1>
+  <p>أدخل بيانات العقار مرة، والنظام يكتب الإعلان بلغات المشترين الأجانب.</p>
+
+  <!-- AC-9.1: property input (type, city, price, area, bedrooms, features) -->
+  <div class="field"><label>نوع العقار</label><select><option>فيلا</option></select></div>
+  <div class="field"><label>المدينة</label><input value="الرياض" /></div>
+  <div class="field"><label>السعر (ريال)</label><input type="number" placeholder="2400000" /></div>
+  <div class="field"><label>المساحة (م²)</label><input type="number" placeholder="450" /></div>
+  <button class="cta">ولّد الإعلان</button>
+
+  <!-- AC-9.2: generated copy, one card per language (en/zh/ms/ur/ar), uniform tone -->
+  <!-- AC-9.3: each card is editable + savable -->
+  <div class="card"><div class="lang">إنجليزي</div><b>Luxury Villa in Riyadh</b><p>A stunning 5-bedroom villa…</p></div>
+  <div class="card"><div class="lang">صيني</div><b>利雅得豪华别墅</b><p>令人惊叹的五居室别墅…</p></div>
+  <div class="card"><div class="lang">أردو</div><b>ریاض میں پرتعیشولا</b><p>شاندار 5 بیڈ روم ولا…</p></div>
+</body>
+</html>
