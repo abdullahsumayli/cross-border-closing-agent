@@ -26,3 +26,7 @@ export const captureSignup = (brokerId: string) =>
 
 export const capturePayment = (brokerId: string, tier: string, amountSar: number) =>
   captureEvent(brokerId, 'payment', { tier, amount_sar: amountSar, currency: 'SAR' })
+
+// Story 11 AC-11.4: free → paid conversion as a first-class metric.
+export const captureConversion = (brokerId: string, fromTier: string, toTier: string) =>
+  captureEvent(brokerId, 'conversion', { from_tier: fromTier, to_tier: toTier })

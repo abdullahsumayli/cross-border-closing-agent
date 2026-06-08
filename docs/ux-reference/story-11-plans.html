@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- UX reference stub — Story 11: tiered pricing + freemium (L-006). RTL ground truth. -->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Story 11 — الباقات</title>
+  <style>
+    body { font-family: Tajawal, sans-serif; max-width: 880px; margin: 0 auto; padding: 24px 16px; color: #0F172A; }
+    h1 { font-family: Cairo, sans-serif; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .card { border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px; }
+    .card.active { border: 2px solid #0F766E; }
+    .price { font-size: 22px; font-weight: 700; }
+    .cta { background: #0F766E; color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 700; border: none; width: 100%; }
+  </style>
+</head>
+<body>
+  <h1>الباقات</h1>
+  <p>ابدأ مجاناً، ورقِّ في أي لحظة — الحدود تتحدّث فوراً.</p>
+  <div class="grid">
+    <!-- AC-11.1: free plan -->
+    <div class="card"><b>مجاني</b><div class="price">مجاني</div><ul><li>عقار 1</li><li>منصة 1</li><li>5 استفسارات</li></ul><button class="cta">ابدأ مجاناً</button></div>
+    <div class="card"><b>مبتدئ</b><div class="price">490 ريال</div><ul><li>10 عقارات</li><li>3 منصات</li><li>50 استفسار</li></ul><button class="cta">رقِّ الآن</button></div>
+    <!-- AC-11.2: instant upgrade -->
+    <div class="card active"><b>احترافي</b><div class="price">990 ريال</div><ul><li>50 عقار</li><li>6 منصات</li><li>300 استفسار</li></ul><button class="cta">باقتك الحالية</button></div>
+    <div class="card"><b>وكالة</b><div class="price">2500 ريال</div><ul><li>غير محدود</li><li>غير محدود</li><li>غير محدود</li></ul><button class="cta">رقِّ الآن</button></div>
+  </div>
+</body>
+</html>

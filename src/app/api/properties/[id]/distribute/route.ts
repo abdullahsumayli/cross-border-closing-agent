@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import { registerPlannedConnectors } from '@/lib/distribution/bootstrap'
 import { publishToChannels } from '@/lib/distribution/engine'
 import type { CanonicalListing } from '@/lib/distribution/connector'
+import { canDistributeTo, type PlanTier } from '@/lib/plans'
 
 // Story 10 AC-10.1 / AC-10.2: publish a property to the selected channels in one call,
 // recording per-channel status (with retry) into the distributions table.
@@ -17,6 +18,13 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
   const language: string = body?.language ?? 'en'
   if (channels.length === 0) {
     return NextResponse.json({ error: 'channels[] required' }, { status: 400 })
+  }
+
+  // Story 11 AC-11.3: enforce the plan's channel cap
+  const { data: sub } = await supabase.from('subscriptions').select('tier').eq('broker_id', user.id).maybeSingle()
+  const tier = (sub?.tier as PlanTier) ?? 'free'
+  if (!canDistributeTo(channels.length, tier)) {
+    return NextResponse.json({ error: 'plan_limit_reached', tier, limit: 'maxChannels' }, { status: 403 })
   }
 
   const { data: property, error: pErr } = await supabase
