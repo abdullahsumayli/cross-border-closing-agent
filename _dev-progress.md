@@ -4,8 +4,8 @@
 > كل أمر مُرقَّم (`/1-eo-dev-start` → `/8-eo-retro`) يكتب هنا عند نهاية التشغيل.
 
 Last updated: 2026-06-08
-Current sprint: التطوير المستمر — Stories 7, 9, 10, 11 (الأساس 1-4 أُعيد التحقق منه + إعادة شحن)
-Last command: /5-eo-score Stories 1-4 (verify+reship · composite 90)
+Current sprint: التطوير المستمر — اكتملت كل القصص في النطاق (1-11). 7 و10 code-shipped/blocked على مفاتيح خارجية
+Last command: /8-eo-retro (Phase 2 completion · L-007/008/009)
 
 ## Retros
 
@@ -13,6 +13,7 @@ Last command: /5-eo-score Stories 1-4 (verify+reship · composite 90)
 - 2026-06-05 — docs/retros/2026-06-05-story5.md (Story 5 · composite 90 · لا bridge-gaps · L-004 added)
 - 2026-06-05 — docs/retros/2026-06-05-story6.md (Story 6 · composite 90 · لا bridge-gaps · L-005 added · Architecture Q6↑8)
 - 2026-06-05 — docs/retros/2026-06-05-story8.md (Story 8 · composite 92 · QA↑9 · L-006 added · focus: UX)
+- 2026-06-08 — docs/retros/2026-06-08-phase2-completion.md (verify+reship 1-4 + Stories 7,9,10,11 · L-007/008/009 · 7,10 blocked on external creds)
 
 ## Stories
 

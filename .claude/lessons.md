@@ -1,7 +1,7 @@
 # Lessons — Cross-Border Closing Agent
 
 Last pruned: 2026-06-05
-Last updated: 2026-06-05 (Story 8 retro — L-006 added)
+Last updated: 2026-06-08 (verify+reship 1-4 + Stories 7,9,10,11 — L-007, L-008, L-009 added)
 
 ## Active lessons
 
@@ -72,6 +72,36 @@ void syncService(id, {
 **لماذا:** Stories 5, 6, 8 — UX cap عند 8 في جميعها بسبب "لا ux-reference artifact للقصص v2". إنشاء stub قبل التطوير يمنع الـ cap ويرفع UX Q7 (ux-reference match) من 0 → 8+.
 
 **كيف أطبّق:** في `/2-eo-dev-plan`، إذا كان الـ plan يتضمن `.tsx` جديد → أضف "إنشاء `docs/ux-reference/story-N-layout.html`" كأول خطوة قبل `/3-eo-code`. Stub بسيط بـ dir="rtl" والعناصر الرئيسية يكفي.
+
+---
+
+### L-007: انجراف عقد env بعد هجرة مزوّد — الكود يقرأ متغيّراً لا يوثّقه `.env.example`
+
+**القاعدة:** بعد أي هجرة مزوّد (Anthropic→OpenRouter، Stripe→Tap، …)، تحقّق أن كل `process.env.X` في الكود يطابق المتغيّر الموثَّق في `.env.example`، وأن اسمه يعكس المزوّد الفعلي (endpoint OpenRouter ⇒ `OPENROUTER_API_KEY` لا `ANTHROPIC_API_KEY`).
+
+**لماذا:** هجرة OpenRouter تركت `whatsapp/route.ts` يقرأ `ANTHROPIC_API_KEY` بينما `.env.example` يوثّق `OPENROUTER_API_KEY` → على أي نشر نظيف يتبع العقد: `Bearer undefined` → كشف اللغة يفشل صامتاً (AC-2.1 مكسور). الاختبارات مرّت لأنها تحقن mock، فالـ bug ظهر فقط في الإنتاج. هذا «القصة 2 وقفت».
+
+**كيف أطبّق:** بعد هجرة، `grep -rn "process.env" src/` وقابِل كل مفتاح بـ `.env.example`. لأي نداء خدمة خارجية: guard على المفتاح أولاً (`if (!key) fallback`) + معالجة شكل الرد، وأضف regression test يثبت السلوك عند غياب المفتاح/فشل الرد. مرتبط بـ [[L-001]] و [[L-003]].
+
+---
+
+### L-008: مصدر الحقيقة المُتتبَّع في `architecture/` (lowercase) — مجلّدات EO-Brain المرقّمة مُتجاهَلة
+
+**القاعدة:** المجلّدات المرقّمة (`0-Scorecards/`, `1-ProjectBrain/`, `4-Architecture/`, …) في `.gitignore` — هي مصدر EO-Brain المحلّي. النسخة المُتتبَّعة في git هي `architecture/` (lowercase). أي ملف يجب أن يصل GitHub (وأي test يفحص وجود ملف) لازم يكون في `architecture/` أو `docs/` لا في `4-Architecture/`.
+
+**لماذا:** كتبت `pdpl-data-localization.md` في `4-Architecture/` فتجاهله git (والـ commit انكسر بسبب `&&` بعد `git add` فاشل)، و test AC-7.3 كان بيفشل على clone نظيف. كذلك الـ BRD المُتتبَّع كان عالقاً عند Story 8 بينما المدموج (9-11) في `4-Architecture/` المُتجاهَل.
+
+**كيف أطبّق:** قبل أي commit لوثيقة، `git check-ignore -v <path>`. ضع وثائق المعمارية في `architecture/`، والدرجات/المراجع في `docs/`. عند بدء قصص جديدة من BRD مدموج، زامِن `4-Architecture/brd.md` → `architecture/brd.md` أولاً.
+
+---
+
+### L-009: قصص الاعتماد الخارجي — ابنِ البنية + mock، وسِّم الحيّ blocked، لا تزوّر 90
+
+**القاعدة:** لقصة تعتمد على حساب/منصة خارجية لا تملكها (Tap، Properstar/Juwai)، ابنِ كل الكود القابل للبناء (interface + registry + engine + mock connector + tests + DB + UI) وأوسم نصف الـ AC الحيّ «blocked on human action». درجة هذي القصص سقفها ~88 (QA=8 cap L-001) — **لا ترفعها لـ90 بـ bridge-gaps لأن الفجوة credential مو code**.
+
+**لماذا:** Story 7 (Tap) و Story 10 (المنصات) كلاهما 88: البنية مكتملة ومُختبَرة لكن صفر تكامل حي. التزوير لـ90 يكسر صدق trend.csv. النمط الصحيح: mock connector يثبت الـ engine end-to-end، ويُستبدَل بموصّل حقيقي دون تعديل (AC-10.4).
+
+**كيف أطبّق:** في الخطة، صنّف كل AC: buildable الآن / blocked-credential. ابنِ الأول بـ mock + test، وثّق الثاني في `.env.example` + ملاحظة blocked. درجة code-shipped مع cap صريح. مرتبط بـ [[L-001]] و [[L-003]].
 
 ---
 
