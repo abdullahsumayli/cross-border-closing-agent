@@ -24,7 +24,7 @@ Last command: /5-eo-score Stories 1-4 (verify+reship · composite 90)
 | 4 | النشر للإنتاج + فحص الصحة | MVP | ✅ shipped | ✓ | 17/17 | 90 | 2026-06-05 | 9ec99c6 → GitHub main |
 | 5 | لوحة تحكم إدارية كاملة | v2 | ✅ shipped | ✓ | 45/45 | 90 | 2026-06-05 | 855bb49 → GitHub main |
 | 6 | تكامل GoHighLevel (GHL) | v2 | ✅ shipped | ✓ | 26/26 | 90 | 2026-06-05 | 08137d5 → GitHub main |
-| 7 | Tap Payments (مسار خليجي ثانٍ) + PDPL | v2 | 🧊 frozen | — | — | — | — | مؤجَّل — [@Phase2] |
+| 7 | Tap Payments (مسار خليجي ثانٍ) + PDPL | v2 | 🟡 code-shipped (blocked) | ✓ | 10/10 | 88 | 2026-06-08 | الكود على main · +2 محجوبة على حساب Tap حي + ترحيل staging (L-001) |
 | 8 | تحليلات وتقارير الوسيط | v2 | ✅ shipped | ✓ | 25/25 | 92 | 2026-06-05 | a9120a1 → GitHub main (pending push) |
 
 ## Status legend
