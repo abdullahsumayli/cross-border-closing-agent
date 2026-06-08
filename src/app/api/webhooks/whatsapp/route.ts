@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyWebhookSignature, sendWhatsAppMessage, sendQualificationCardTobroker } from '@/lib/whatsapp'
 import { detectLanguage, processStep } from '@/lib/qualification/engine'
+import type { SupportedLanguage } from '@/lib/qualification/prompts'
+import { detectLanguageViaOpenRouter } from '@/lib/openrouter'
 import { generateArabicCard } from '@/lib/qualification/card-generator'
 import { createServiceClient } from '@/lib/supabase/service'
 import { syncCardToGHL } from '@/lib/ghl'
@@ -97,7 +99,7 @@ async function processWebhookAsync(rawBody: string) {
   let lead = existingLead
   if (!lead) {
     // Detect language for new lead (AC-2.1)
-    const detectedLang = await detectLanguage(messageText, claudeCall)
+    const detectedLang = await detectLanguage(messageText, detectLanguageViaOpenRouter)
 
     if (detectedLang === 'unknown') {
       // AC-2.5: unsupported language — send helpful message
@@ -135,7 +137,7 @@ async function processWebhookAsync(rawBody: string) {
   // Run qualification engine
   const state = {
     step: lead.qualification_step ?? 0,
-    language: lead.detected_language as any,
+    language: lead.detected_language as SupportedLanguage | null,
     answers: {
       nationality: lead.nationality ?? undefined,
       budget: lead.budget_sar?.toString() ?? undefined,
@@ -220,22 +222,4 @@ async function processWebhookAsync(rawBody: string) {
         .eq('lead_id', lead.id)
     }
   }
-}
-
-// Claude API call wrapper — injectable for testing
-async function claudeCall(prompt: string): Promise<string> {
-  const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-            'Authorization': `Bearer ${process.env.ANTHROPIC_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: 'anthropic/claude-haiku-4-5',
-      max_tokens: 10,
-      messages: [{ role: 'user', content: prompt }],
-    }),
-  })
-  const data = await res.json()
-  return (data.choices[0].message.content as string).trim()
 }

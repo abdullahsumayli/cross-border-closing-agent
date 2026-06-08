@@ -3,9 +3,9 @@
 > Tracker لـ `/eo-guide`. الـ filesystem مصدر الحقيقة؛ هذا الملف view يُصالحه `/eo-guide`.
 > كل أمر مُرقَّم (`/1-eo-dev-start` → `/8-eo-retro`) يكتب هنا عند نهاية التشغيل.
 
-Last updated: 2026-06-05
-Current sprint: v2 — Story 6
-Last command: /8-eo-retro Story-8
+Last updated: 2026-06-08
+Current sprint: التطوير المستمر — Stories 7, 9, 10, 11 (الأساس 1-4 أُعيد التحقق منه + إعادة شحن)
+Last command: /5-eo-score Stories 1-4 (verify+reship · composite 90)
 
 ## Retros
 
@@ -19,7 +19,7 @@ Last command: /8-eo-retro Story-8
 | # | القصة | Phase | الحالة | خطة | اختبارات | درجة | شُحن | ملاحظات |
 |---|-------|-------|--------|-----|----------|------|------|---------|
 | 1 | تسجيل الوسيط | MVP | ✅ shipped | ✓ | 34/34 | 90 | 2026-06-05 | 37e5d71 → GitHub main |
-| 2 | استقبال وتأهيل الاستفسار الأجنبي | MVP | ✅ shipped | ✓ | 36/36 | 90 | 2026-06-05 | 74e334b → GitHub main |
+| 2 | استقبال وتأهيل الاستفسار الأجنبي | MVP | ✅ shipped | ✓ | 40/40 | 90 | 2026-06-08 | إعادة شحن — أُصلح regression: ANTHROPIC_API_KEY→OPENROUTER_API_KEY (كشف اللغة كان مكسوراً على نشر نظيف) + 4 regression tests |
 | 3 | التسعير والاشتراك | MVP | ✅ shipped | ✓ | 19/19 | 90 | 2026-06-05 | 03cac6e → GitHub main |
 | 4 | النشر للإنتاج + فحص الصحة | MVP | ✅ shipped | ✓ | 17/17 | 90 | 2026-06-05 | 9ec99c6 → GitHub main |
 | 5 | لوحة تحكم إدارية كاملة | v2 | ✅ shipped | ✓ | 45/45 | 90 | 2026-06-05 | 855bb49 → GitHub main |

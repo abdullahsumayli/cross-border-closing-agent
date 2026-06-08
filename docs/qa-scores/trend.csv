@@ -14,3 +14,4 @@ date,sha,product,architecture,engineering,qa,ux,composite,decision
 2026-06-05,002ec75,10,9,10,8,8,90,ship
 2026-06-05,08137d5,10,9,10,8,8,90,shipped-to-github
 2026-06-05,7be6af8,10,9,10,9,8,92,ship
+2026-06-08,a67d996,10,9,10,8,8,90,verify-reship-stories-1-4
