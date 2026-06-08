@@ -27,7 +27,7 @@ Last command: /5-eo-score Stories 1-4 (verify+reship · composite 90)
 | 7 | Tap Payments (مسار خليجي ثانٍ) + PDPL | v2 | 🟡 code-shipped (blocked) | ✓ | 10/10 | 88 | 2026-06-08 | الكود على main · +2 محجوبة على حساب Tap حي + ترحيل staging (L-001) |
 | 8 | تحليلات وتقارير الوسيط | v2 | ✅ shipped | ✓ | 25/25 | 92 | 2026-06-05 | a9120a1 → GitHub main (pending push) |
 | 9 | مولّد الإعلان بالـ AI متعدد اللغات | التطوير المستمر | ✅ shipped | ✓ | 8/8 | 90 | 2026-06-08 | الكود على main · متابعة: UI رفع الصور |
-| 10 | محرك التوزيع + الموصّلات + XML feed | التطوير المستمر | ⬜ not started | — | — | — | — | طبقة الدمج 1+3 |
+| 10 | محرك التوزيع + الموصّلات + XML feed | التطوير المستمر | 🟡 code-shipped (blocked) | ✓ | 8/8 | 88 | 2026-06-08 | الكود على main · المنصات الحية محجوبة على حسابات (L-001) |
 | 11 | التسعير الطبقي + Freemium | التطوير المستمر | ⬜ not started | — | — | — | — | يبني على Story 3 |
 
 ## Status legend

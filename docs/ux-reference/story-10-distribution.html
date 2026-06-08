@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- UX reference stub — Story 10: global distribution (L-006). RTL ground truth. -->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Story 10 — توزيع الإعلان عالمياً</title>
+  <style>
+    body { font-family: Tajawal, sans-serif; max-width: 640px; margin: 0 auto; padding: 24px 16px; color: #0F172A; }
+    h1 { font-family: Cairo, sans-serif; }
+    .row { display: flex; gap: 8px; align-items: center; padding: 10px; border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 8px; }
+    .cta { background: #0F766E; color: #fff; padding: 12px 20px; border-radius: 8px; font-weight: 700; border: none; }
+    .status { display: flex; justify-content: space-between; padding: 10px; border: 1px solid #E2E8F0; border-radius: 8px; margin-top: 6px; }
+    .ok { color: #16A34A; font-weight: 700; } .fail { color: #DC2626; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>توزيع الإعلان عالمياً</h1>
+  <p>اختر المنصات وانشر بضغطة واحدة.</p>
+
+  <!-- AC-10.1: select target platforms -->
+  <div class="row"><input type="checkbox" checked /> Properstar (شبكة 100+ منصة)</div>
+  <div class="row"><input type="checkbox" /> Juwai (الصين)</div>
+  <div class="row"><input type="checkbox" /> Rightmove Overseas</div>
+  <button class="cta">انشر إلى 1 منصة</button>
+
+  <!-- AC-10.2: per-channel status + retry -->
+  <h2>حالة النشر</h2>
+  <div class="status"><span>properstar</span><span class="ok">published</span></div>
+  <div class="status"><span>juwai</span><span class="fail">failed (3↻)</span></div>
+</body>
+</html>
